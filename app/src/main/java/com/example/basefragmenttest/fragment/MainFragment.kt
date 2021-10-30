@@ -19,13 +19,14 @@ class MainFragment : BaseFragment<FragmentMainBinding,MainFragmentViewModel >() 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /* ---- connect with viewModel ---- */
         binding.mainFragment    = viewModel
 
         viewModel.tvHelloTestBaseFragment.value = "Hello Test Fragment"
 
         binding.helloBaseFragment.setOnClickListener {
             getShortToast("Go from main fragment to second fragment")
-            findControllerNavigate(R.id.action_mainFragment_to_secondFragment)
+            getFindControllerNavigateWitBundle(R.id.action_mainFragment_to_secondFragment,"keshawy","Hello with simple bundle ")
         }
     }
 }

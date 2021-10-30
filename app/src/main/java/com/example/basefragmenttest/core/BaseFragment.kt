@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.basefragmenttest.R
+import java.util.*
 
 abstract class BaseFragment< dataBinding : ViewDataBinding , viewModel : ViewModel > : Fragment() {
 
@@ -24,6 +25,8 @@ abstract class BaseFragment< dataBinding : ViewDataBinding , viewModel : ViewMod
         viewModel = ViewModelProvider(this).get(getViewModel())
 
         binding = getFragmentView()
+
+        getLifecycleOwner()
 
         return binding.root
 
@@ -47,7 +50,26 @@ abstract class BaseFragment< dataBinding : ViewDataBinding , viewModel : ViewMod
     }
 
     /* ---- create base navigation ---- */
-    fun findControllerNavigate( action : Int){
+    fun getFindControllerNavigate( action : Int){
         findNavController().navigate(action)
     }
+
+    /* ---- get navigate with bundle pass simple data  ----- */
+    fun getFindControllerNavigateWitBundle( action : Int , key : String , data : Any  ){
+        val bundle = bundleOf(key to data)
+        findNavController().navigate(action,bundle)
+    }
+
+    /* ---- get navigate with bundle pass object by Serializable  ----- */
+    fun getFindControllerNavigateWitSendObjectByBundle( action : Int , key : String , data : Class<Any>  ){
+        val bundle = Bundle()
+        bundle.putSerializable(key,data)
+        findNavController().navigate(action,bundle)
+    }
+
+    /* ------ get lifecycle owner ----- */
+    fun getLifecycleOwner(){
+        binding.lifecycleOwner = this
+    }
+
 }

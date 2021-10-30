@@ -17,6 +17,11 @@ class SecondFragment : BaseFragment<FragmentSecondBinding,SecondFragmentViewMode
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /* -------- connect with viewModel ------- */
+        binding.secondFragment = viewModel
 
+       val data = arguments?.getString("keshawy")
+
+        binding.tvSecondFragment.text = data.toString()
     }
 }
