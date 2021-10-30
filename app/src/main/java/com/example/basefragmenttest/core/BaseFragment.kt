@@ -9,6 +9,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.basefragmenttest.R
 
 abstract class BaseFragment< dataBinding : ViewDataBinding , viewModel : ViewModel > : Fragment() {
 
@@ -18,6 +20,7 @@ abstract class BaseFragment< dataBinding : ViewDataBinding , viewModel : ViewMod
 
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         viewModel = ViewModelProvider(this).get(getViewModel())
 
         binding = getFragmentView()
@@ -43,4 +46,8 @@ abstract class BaseFragment< dataBinding : ViewDataBinding , viewModel : ViewMod
         Toast.makeText(requireActivity(),message,Toast.LENGTH_LONG).show()
     }
 
+    /* ---- create base navigation ---- */
+    fun findControllerNavigate( action : Int){
+        findNavController().navigate(action)
+    }
 }

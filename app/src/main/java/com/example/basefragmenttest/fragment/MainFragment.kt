@@ -7,6 +7,8 @@ import androidx.lifecycle.LifecycleOwner
 import com.example.basefragmenttest.R
 import com.example.basefragmenttest.core.BaseFragment
 import com.example.basefragmenttest.databinding.FragmentMainBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 class MainFragment : BaseFragment<FragmentMainBinding,MainFragmentViewModel >() {
 
@@ -22,7 +24,8 @@ class MainFragment : BaseFragment<FragmentMainBinding,MainFragmentViewModel >() 
         viewModel.tvHelloTestBaseFragment.value = "Hello Test Fragment"
 
         binding.helloBaseFragment.setOnClickListener {
-            getShortToast("Hello Test Base Fragment")
+            getShortToast("Go from main fragment to second fragment")
+            findControllerNavigate(R.id.action_mainFragment_to_secondFragment)
         }
     }
 }
