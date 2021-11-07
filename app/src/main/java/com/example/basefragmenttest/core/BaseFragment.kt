@@ -49,23 +49,10 @@ abstract class BaseFragment< dataBinding : ViewDataBinding , viewModel : ViewMod
         Toast.makeText(requireActivity(),message,Toast.LENGTH_LONG).show()
     }
 
-    /* ---- create base navigation ---- */
-    fun getFindControllerNavigate( action : Int){
-        findNavController().navigate(action)
-    }
-
-    /* ---- get navigate with bundle pass simple data  ----- */
-    fun getFindControllerNavigateWitBundle( action : Int , key : String , data : Any  ){
-        val bundle = bundleOf(key to data)
-        findNavController().navigate(action,bundle)
-    }
-
-    /* ---- get navigate with bundle pass object by Serializable  ----- */
-    fun getFindControllerNavigateWitSendObjectByBundle( action : Int , key : String , data : Class<Any>  ){
-        val bundle = Bundle()
-        bundle.putSerializable(key,data)
-        findNavController().navigate(action,bundle)
-    }
+    /**
+     * get navigate only or with pass any data by bundle
+     */
+    fun getFindControllerNavigate(action : Int , bundle : Bundle = Bundle()) = findNavController().navigate(action,bundle)
 
     /* ------ get lifecycle owner ----- */
     fun getLifecycleOwner(){

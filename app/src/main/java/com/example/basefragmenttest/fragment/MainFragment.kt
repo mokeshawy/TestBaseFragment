@@ -3,6 +3,7 @@ package com.example.basefragmenttest.fragment
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LifecycleOwner
 import com.example.basefragmenttest.R
 import com.example.basefragmenttest.core.BaseFragment
@@ -26,7 +27,8 @@ class MainFragment : BaseFragment<FragmentMainBinding,MainFragmentViewModel >() 
 
         binding.helloBaseFragment.setOnClickListener {
             getShortToast("Go from main fragment to second fragment")
-            getFindControllerNavigateWitBundle(R.id.action_mainFragment_to_secondFragment,"keshawy","Hello with simple bundle ")
+
+            getFindControllerNavigate(R.id.action_mainFragment_to_secondFragment,bundleOf("keshawy" to "Hello with simple bundle "))
         }
     }
 }
